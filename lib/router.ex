@@ -17,7 +17,7 @@ defmodule Slackinator.Router do
 
   get "/woo" do
     conn
-    |> send_resp(200, "ᕕ( ᐛ )ᕗ")
+    |> send_resp(200, "{\"text\": \"ᕕ( ᐛ )ᕗ}\", \"response_type\": \"in_channel\"}")
   end
 
   get "/" do
