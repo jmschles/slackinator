@@ -1,12 +1,13 @@
 defmodule Slackinator.Router do
   use Plug.Router
   require Logger
-  require TokenChecker
+
+  plug Slackinator.TokenChecker
+  plug Slackinator.ResponsePicker
 
   plug Plug.Logger
   plug :match
   plug :dispatch
-  plug TokenChecker
 
   def init(options) do
     options
@@ -19,11 +20,15 @@ defmodule Slackinator.Router do
   get "/woo" do
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, "{\"text\": \"ᕕ( ᐛ )ᕗ\", \"response_type\": \"in_channel\"}")
+    |> send_resp(200, encoded_woo_response(conn))
   end
 
-  get "/" do
+  get _ do
     conn
     |> send_resp(200, "Elixir server reached")
+  end
+
+  defp encoded_woo_response(conn) do
+    Poison.Encoder.encode(%{text: conn.assigns[:response], response_type: "in_channel"}, [])
   end
 end

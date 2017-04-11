@@ -1,4 +1,4 @@
-defmodule TokenChecker do
+defmodule Slackinator.TokenChecker do
   defmodule InvalidTokenError do
     defexception message: "Invalid token", plug_status: 401
   end
@@ -11,7 +11,7 @@ defmodule TokenChecker do
   end
 
   defp verify_token!(conn) do
-    unless passed_token(conn) == correct_token, do: raise InvalidTokenError
+    unless passed_token(conn) == correct_token(), do: raise InvalidTokenError
   end
 
   defp passed_token(conn) do

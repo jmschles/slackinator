@@ -16,7 +16,7 @@ defmodule Slackinator.Mixfile do
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
     [
-      extra_applications: [:logger, :cowboy, :plug],
+      extra_applications: [:logger, :cowboy, :plug, :poison],
       mod: {Slackinator.Application, []}
     ]
   end
@@ -24,7 +24,8 @@ defmodule Slackinator.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.0.0"}
+      {:plug, "~> 1.0.0"},
+      {:poison, "~> 3.0"}
     ]
   end
 end
