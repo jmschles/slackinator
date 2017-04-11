@@ -1,11 +1,12 @@
-
 defmodule Slackinator.Router do
   use Plug.Router
   require Logger
+  require TokenChecker
 
   plug Plug.Logger
   plug :match
   plug :dispatch
+  plug TokenChecker
 
   def init(options) do
     options
