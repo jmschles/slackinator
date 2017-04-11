@@ -5,7 +5,7 @@ defmodule Slackinator.ResponsePicker do
   def init(options), do: options
 
   def call(conn, _opts) do
-    response = conn
+    conn
     |> parse_command
     |> pick_response
     |> assign_response(conn)
