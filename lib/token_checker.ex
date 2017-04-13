@@ -1,9 +1,4 @@
 defmodule Slackinator.TokenChecker do
-  @valid_tokens [
-    System.get_env("SM_SLACK_TOKEN"),
-    System.get_env("BOOTSY_SLACK_TOKEN")
-  ]
-
   defmodule InvalidTokenError do
     defexception message: "Invalid token", plug_status: 401
   end
@@ -21,5 +16,12 @@ defmodule Slackinator.TokenChecker do
 
   defp passed_token(conn) do
     Plug.Conn.fetch_query_params(conn).params["token"]
+  end
+
+  defp valid_tokens do
+    [
+      System.get_env("SM_SLACK_TOKEN"),
+      System.get_env("BOOTSY_SLACK_TOKEN")
+    ]
   end
 end
