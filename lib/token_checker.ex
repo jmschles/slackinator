@@ -11,7 +11,7 @@ defmodule Slackinator.TokenChecker do
   end
 
   defp verify_token!(conn) do
-    unless Enum.member(valid_tokens, passed_token(conn)), do: raise InvalidTokenError
+    unless Enum.member?(valid_tokens, passed_token(conn)), do: raise InvalidTokenError
   end
 
   defp passed_token(conn) do
