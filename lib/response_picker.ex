@@ -1,4 +1,3 @@
-require IEx
 defmodule Slackinator.ResponsePicker do
   import Plug.Conn
 
